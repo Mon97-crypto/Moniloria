@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-i18n-title="page.title">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Newsreader:ital,wght@0,400;0,500;1,400&family=Syne:wght@500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Newsreader:ital,wght@0,400;0,500;1,400&family=Noto+Sans+Kannada:wght@400;500;600;700;800&family=Noto+Serif+Kannada:wght@400;500&family=Syne:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/styles.css" />
@@ -21,41 +21,44 @@
     <header class="nav">
       <a class="wordmark" href="index.html"><span class="gem" aria-hidden="true"></span>Moniloria</a>
       <nav aria-label="Main">
-        <a href="#collections">Collections</a>
-        <a href="#alternate-reality">Alternate Reality</a>
-        <a href="#pricing">Pricing</a>
+        <a href="#collections" data-i18n="nav.collections">Collections</a>
+        <a href="#alternate-reality" data-i18n="nav.ar">Alternate Reality</a>
+        <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
       </nav>
-      <a class="nav-cta" href="story.html">Start reading</a>
+      <div class="nav-end">
+        <button class="lang-toggle" type="button" aria-label="Change language"></button>
+        <a class="nav-cta" href="story.html" data-i18n="nav.cta">Start reading</a>
+      </div>
     </header>
 
     <main>
       <section class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">The library of secrets</p>
-          <h1>Everything they <em>never</em> told you.</h1>
-          <p class="hero-lede">
+          <p class="eyebrow" data-i18n="hero.eyebrow">The library of secrets</p>
+          <h1 data-i18n-html="hero.h1">Everything they <em>never</em> told you.</h1>
+          <p class="hero-lede" data-i18n="hero.lede">
             Beauty, strength, food, power, and the mysteries nobody could explain. Six
             collections of secrets, and stories that change with every choice you make.
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="story.html">Play a story free</a>
-            <a class="button ghost" href="#collections">Browse the collections</a>
+            <a class="button primary" href="story.html" data-i18n="hero.play">Play a story free</a>
+            <a class="button ghost" href="#collections" data-i18n="hero.browse">Browse the collections</a>
           </div>
         </div>
 
         <div class="stack" aria-hidden="true">
           <span class="cover cover-back">
-            <span class="cover-kicker">World Secrets</span>
-            <span class="cover-title">The Bermuda Triangle Files</span>
+            <span class="cover-kicker" data-i18n="stack.world">World Secrets</span>
+            <span class="cover-title" data-i18n="stack.worldTitle">The Bermuda Triangle Files</span>
           </span>
           <span class="cover cover-mid">
-            <span class="cover-kicker">Suspense</span>
-            <span class="cover-title">Don’t Answer the Door</span>
+            <span class="cover-kicker" data-i18n="stack.suspense">Suspense</span>
+            <span class="cover-title" data-i18n="stack.suspenseTitle">Don’t Answer the Door</span>
           </span>
           <span class="cover cover-front">
-            <span class="cover-kicker">Alternate Reality</span>
-            <span class="cover-title">How to Survive a Zombie Apocalypse</span>
-            <span class="cover-foot">6 endings</span>
+            <span class="cover-kicker" data-i18n="stack.ar">Alternate Reality</span>
+            <span class="cover-title" data-i18n="zombie.title">How to Survive a Zombie Apocalypse</span>
+            <span class="cover-foot" data-i18n="zombie.endings">6 endings</span>
           </span>
         </div>
       </section>
@@ -64,16 +67,16 @@
 
       <section class="collections" id="collections">
         <div class="section-head">
-          <p class="eyebrow">Six collections</p>
-          <h2>Pick your secret.</h2>
+          <p class="eyebrow" data-i18n="collections.eyebrow">Six collections</p>
+          <h2 data-i18n="collections.h2">Pick your secret.</h2>
         </div>
         <ul class="tile-grid" id="collection-tiles"></ul>
       </section>
 
       <section class="books" id="books">
         <div class="section-head">
-          <p class="eyebrow">The library</p>
-          <h2>Every book, $20.</h2>
+          <p class="eyebrow" data-i18n="books.eyebrow">The library</p>
+          <h2 data-i18n="books.h2">Every book, $20.</h2>
         </div>
         <div class="chips" id="book-filters" role="group" aria-label="Filter by collection"></div>
         <ul class="book-grid" id="book-grid"></ul>
@@ -82,90 +85,92 @@
       <section class="ar" id="alternate-reality">
         <div class="ar-panel">
           <div class="ar-copy">
-            <p class="eyebrow">New · Interactive</p>
-            <h2>Alternate Reality</h2>
-            <p class="ar-lede">
+            <p class="eyebrow" data-i18n="ar.eyebrow">New · Interactive</p>
+            <h2 data-i18n="ar.h2">Alternate Reality</h2>
+            <p class="ar-lede" data-i18n="ar.lede">
               Stories that are about you. They use your name. At every turn you choose what
               happens next, and the ending you reach is the one you earned.
             </p>
             <ul class="ar-points">
-              <li><strong>2</strong> choices at every cliffhanger</li>
-              <li><strong>6</strong> endings to find, one of them secret</li>
-              <li><strong>12</strong> seconds to decide when it matters most</li>
+              <li><strong>2</strong> <span data-i18n="ar.point1">choices at every cliffhanger</span></li>
+              <li><strong>6</strong> <span data-i18n="ar.point2">endings to find, one of them secret</span></li>
+              <li><strong>12</strong> <span data-i18n="ar.point3">seconds to decide when it matters most</span></li>
             </ul>
-            <a class="button primary" href="story.html">Begin Chapter One, free</a>
+            <a class="button primary" href="story.html" data-i18n="ar.begin">Begin Chapter One, free</a>
           </div>
 
           <a class="cover cover-feature" href="story.html" aria-label="Read How to Survive a Zombie Apocalypse">
-            <span class="cover-kicker">Alternate Reality · No. 1</span>
-            <span class="cover-title">How to Survive a Zombie Apocalypse</span>
-            <span class="cover-foot">6 endings</span>
+            <span class="cover-kicker" data-i18n="ar.coverKicker">Alternate Reality · No. 1</span>
+            <span class="cover-title" data-i18n="zombie.title">How to Survive a Zombie Apocalypse</span>
+            <span class="cover-foot" data-i18n="zombie.endings">6 endings</span>
           </a>
         </div>
 
         <ol class="ar-upcoming">
-          <li><span>Coming soon</span>The Bermuda Signal</li>
-          <li><span>Coming soon</span>Last Night at Blackwood Manor</li>
-          <li><span>Coming soon</span>The Heist</li>
-          <li><span>Coming soon</span>Day Zero: The Lights Went Out</li>
+          <li><span data-i18n="ar.soon">Coming soon</span><b data-i18n="ar.up1">The Bermuda Signal</b></li>
+          <li><span data-i18n="ar.soon">Coming soon</span><b data-i18n="ar.up2">Last Night at Blackwood Manor</b></li>
+          <li><span data-i18n="ar.soon">Coming soon</span><b data-i18n="ar.up3">The Heist</b></li>
+          <li><span data-i18n="ar.soon">Coming soon</span><b data-i18n="ar.up4">Day Zero: The Lights Went Out</b></li>
         </ol>
       </section>
 
       <section class="pricing" id="pricing">
         <div class="section-head">
-          <p class="eyebrow">Pricing</p>
-          <h2>The more you unlock, the less each costs.</h2>
+          <p class="eyebrow" data-i18n="pricing.eyebrow">Pricing</p>
+          <h2 data-i18n="pricing.h2">The more you unlock, the less each costs.</h2>
         </div>
         <ul class="plans">
           <li class="plan">
-            <h3>Single ebook</h3>
+            <h3 data-i18n="plan1.name">Single ebook</h3>
             <p class="price">$20</p>
-            <p>One book, yours to download and keep.</p>
+            <p data-i18n="plan1.text">One book, yours to download and keep.</p>
           </li>
           <li class="plan featured">
-            <span class="badge">Most popular</span>
-            <h3>The Trio</h3>
+            <span class="badge" data-i18n="plan2.badge">Most popular</span>
+            <h3 data-i18n="plan2.name">The Trio</h3>
             <p class="price">$45</p>
-            <p>Any three books. Mix collections freely.</p>
+            <p data-i18n="plan2.text">Any three books. Mix collections freely.</p>
           </li>
           <li class="plan">
-            <h3>Collection Vault</h3>
+            <h3 data-i18n="plan3.name">Collection Vault</h3>
             <p class="price">$69</p>
-            <p>Every book in one collection.</p>
+            <p data-i18n="plan3.text">Every book in one collection.</p>
           </li>
           <li class="plan">
-            <h3>Complete Library</h3>
+            <h3 data-i18n="plan4.name">Complete Library</h3>
             <p class="price">$149</p>
-            <p>Every ebook, plus a year of new releases.</p>
+            <p data-i18n="plan4.text">Every ebook, plus a year of new releases.</p>
           </li>
           <li class="plan">
-            <h3>Alternate Reality Pass</h3>
-            <p class="price">$9.99<small>/month</small></p>
-            <p>Every interactive story, new ones each week.</p>
+            <h3 data-i18n="plan5.name">Alternate Reality Pass</h3>
+            <p class="price">$9.99<small data-i18n="plan5.per">/month</small></p>
+            <p data-i18n="plan5.text">Every interactive story, new ones each week.</p>
           </li>
         </ul>
-        <p class="pricing-note">Checkout opens at launch.</p>
+        <p class="pricing-note" data-i18n="pricing.note">Checkout opens at launch.</p>
       </section>
     </main>
 
     <dialog class="sample" id="sample" aria-labelledby="sample-title">
       <p class="eyebrow" id="sample-collection"></p>
       <h2 id="sample-title"></h2>
-      <p class="sample-label">From the first page</p>
+      <p class="sample-label" data-i18n="sample.label">From the first page</p>
       <p class="sample-text" id="sample-text"></p>
-      <p class="sample-note">The full first chapter will be free to read at launch.</p>
-      <button class="button ghost" id="sample-close" type="button">Close</button>
+      <p class="sample-note" data-i18n="sample.note">The full first chapter will be free to read at launch.</p>
+      <button class="button ghost" id="sample-close" type="button" data-i18n="sample.close">Close</button>
     </dialog>
 
     <footer class="footer">
       <div class="band" aria-hidden="true"></div>
       <div class="footer-inner">
         <a class="wordmark" href="index.html"><span class="gem" aria-hidden="true"></span>Moniloria</a>
-        <p>Everything they never told you.</p>
-        <p class="footer-legal">© 2026 Moniloria. All rights reserved.</p>
+        <p data-i18n="footer.tagline">Everything they never told you.</p>
+        <p class="footer-legal" data-i18n="footer.legal">© 2026 Moniloria. All rights reserved.</p>
       </div>
     </footer>
 
+    <script src="js/i18n.js"></script>
+    <script src="js/catalog.kn.js"></script>
     <script src="js/home.js"></script>
   </body>
 </html>

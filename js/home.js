@@ -72,6 +72,19 @@
     },
   ];
 
+  // Swap in translated names, hooks and samples when another language is on.
+  const I18n = window.MoniloriaI18n;
+  const t = I18n.t;
+  if (I18n.lang === "kn") {
+    window.MONILORIA_CATALOG_KN.forEach(function (k, i) {
+      const c = collections[i];
+      c.name = k.name;
+      c.mood = k.mood;
+      c.hook = k.hook;
+      k.books.forEach((b, j) => Object.assign(c.books[j], b));
+    });
+  }
+
   const el = (tag, className, text) => {
     const node = document.createElement(tag);
     if (className) node.className = className;
@@ -94,7 +107,7 @@
     tile.appendChild(el("span", "tile-top", String(i + 1).padStart(2, "0") + " · " + c.mood));
     tile.appendChild(el("span", "tile-name", c.name));
     tile.appendChild(el("span", "tile-hook", c.hook));
-    tile.appendChild(el("span", "tile-foot", c.books.length + " books · " + PRICE + " each"));
+    tile.appendChild(el("span", "tile-foot", t("tile.foot", { n: c.books.length })));
     tile.addEventListener("click", function () {
       setFilter(c.id);
       document.getElementById("books").scrollIntoView({ behavior: "smooth" });
@@ -126,7 +139,7 @@
 
       const row = el("div", "book-row");
       row.appendChild(el("span", "book-price", PRICE));
-      const sample = el("button", "book-sample", "Read a sample");
+      const sample = el("button", "book-sample", t("book.sample"));
       sample.type = "button";
       sample.addEventListener("click", function () {
         openSample(c, b);
@@ -151,7 +164,7 @@
     filters.appendChild(chip);
     chips.push({ node: chip, id: id });
   }
-  addChip("all", "All books");
+  addChip("all", t("books.all"));
   collections.forEach((c) => addChip(c.id, c.name));
 
   function setFilter(id) {

@@ -447,3 +447,36 @@ body.night {
 
 section[id] { scroll-margin-top: 90px; }
 .books { padding-top: 8px; }
+
+/* ---------- language switch and Kannada ---------- */
+.nav-end { display: flex; align-items: center; gap: 12px; }
+.lang-toggle {
+  padding: 8px 14px; border-radius: 8px;
+  border: 1px solid var(--line); background: transparent; color: var(--silver);
+  font-family: "Noto Sans Kannada", var(--sans); font-size: 14px; font-weight: 600;
+}
+.lang-toggle:hover { border-color: var(--purple-bright); color: var(--text); }
+.wordmark { font-family: "Syne", system-ui, sans-serif; }
+.ar-upcoming b { font-weight: inherit; }
+
+html[lang="kn"] {
+  --display: "Noto Sans Kannada", "Syne", system-ui, sans-serif;
+  --sans: "Noto Sans Kannada", "Manrope", system-ui, sans-serif;
+  --serif: "Noto Serif Kannada", "Newsreader", Georgia, serif;
+}
+/* Kannada letters are taller and have no capitals, so give them more room. */
+html[lang="kn"] :is(h1, h2, h3, .cover-title, .tile-name, .book3d-title, .book-title, .choice, .ending-name, .price) {
+  line-height: 1.4; letter-spacing: 0;
+}
+html[lang="kn"] :is(.eyebrow, .tile-top, .tile-foot, .cover-kicker, .cover-foot, .book-collection, .book3d-kicker,
+  .choice-prompt, .reader-bar-title, .stats dt, .ending-number, .badge, .sample-label, .ar-upcoming span) {
+  letter-spacing: 0.02em;
+}
+html[lang="kn"] .hero h1 { font-size: clamp(32px, 3.9vw, 54px); }
+html[lang="kn"] .scene-text p, html[lang="kn"] .sample-text { line-height: 1.8; font-size: clamp(19px, 2.4vw, 22px); }
+html[lang="kn"] .book3d-title { font-size: 13px; }
+html[lang="kn"] .book3d-kicker { font-size: 9px; }
+
+@media (max-width: 820px) {
+  .reader-bar-title { display: none; }
+}

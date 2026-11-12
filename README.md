@@ -22,6 +22,9 @@ Then open http://localhost:8000
 | `js/stories/zombie.js` | "How to Survive a Zombie Apocalypse": 6 endings, one secret |
 | `js/engine.js` | Runs any story file: choices, timer, saved progress, endings |
 | `js/auth.js` | Sign-in (Google or guest name) |
+| `js/i18n.js` | Language switch and the Kannada text for both pages |
+| `js/catalog.kn.js` | Kannada names, hooks and samples for the 24 books |
+| `js/stories/zombie.kn.js` | Kannada text for the zombie story |
 | `js/config.js` | Put your Google client ID here to turn on Google sign-in |
 
 ## Turning on Google sign-in

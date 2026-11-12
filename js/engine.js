@@ -1,7 +1,11 @@
 // The Alternate Reality reader: sign-in gate, scenes, choices, timer, endings.
 (function () {
   const Auth = window.MoniloriaAuth;
+  const I18n = window.MoniloriaI18n;
+  const t = I18n.t;
   const story = window.MONILORIA_STORIES.zombie;
+  // Translated words for the story, when the reader has chosen that language.
+  const words = (I18n.lang !== "en" && story[I18n.lang]) || null;
   const $ = (id) => document.getElementById(id);
 
   let reader = null;
@@ -28,6 +32,15 @@
   const progressKey = () => `moniloria.progress.${story.id}.${reader.id}`;
   const foundEndings = () => store.get(endingsKey(), []);
 
+  // ---------- story text in the reader's language ----------
+  const resolve = (value) => (typeof value === "function" ? value(state) : value);
+  const personalise = (text) => text.replace(/\{name\}/g, reader.name);
+  const storyTitle = () => (words ? words.title : story.title);
+  const chapterOf = (id) => (words ? words.nodes[id].chapter : story.nodes[id].chapter);
+  const textOf = (id) => resolve(words ? words.nodes[id].text : story.nodes[id].text);
+  const labelOf = (id, i) => (words ? words.nodes[id].choices[i] : story.nodes[id].choices[i].label);
+  const endingWords = (e) => (words ? words.endings[e.id] : e);
+
   // ---------- views ----------
   function show(view) {
     ["gate-view", "scene-view", "ending-view"].forEach((id) => {
@@ -40,18 +53,17 @@
   function showGate() {
     show("gate-view");
     $("reader-chip").hidden = true;
+    $("gate-title").textContent = storyTitle();
     const hasGoogle = Auth.renderGoogleButton($("google-button"), start);
     $("google-block").hidden = !hasGoogle;
-    $("guest-label").textContent = hasGoogle
-      ? "Or continue as a guest"
-      : "What should we call you?";
+    $("guest-label").textContent = t(hasGoogle ? "gate.guestLabelAlt" : "gate.guestLabel");
   }
 
   $("guest-form").addEventListener("submit", function (e) {
     e.preventDefault();
     const r = Auth.signInAsGuest($("guest-name").value);
     if (!r) {
-      $("guest-error").textContent = "Please enter your first name.";
+      $("guest-error").textContent = t("gate.error");
       return;
     }
     start(r);
@@ -82,9 +94,6 @@
     state = Object.assign({ node: story.start, step: 1 }, story.initialState);
   }
 
-  const resolve = (value) => (typeof value === "function" ? value(state) : value);
-  const personalise = (text) => text.replace(/\{name\}/g, reader.name);
-
   function renderParagraphs(el, paragraphs) {
     el.innerHTML = "";
     paragraphs.forEach(function (text, i) {
@@ -96,21 +105,22 @@
   }
 
   function renderStats() {
-    const who = [state.rosa && "Rosa", state.kai && "Kai"].filter(Boolean);
+    const who = [state.rosa && t("story.rosa"), state.kai && t("story.kai")].filter(Boolean);
     $("stat-supplies").textContent = state.supplies;
     $("stat-trust").textContent = state.trust;
-    $("stat-with").textContent = who.length ? who.join(" & ") : "No one";
+    $("stat-with").textContent = who.length ? who.join(t("story.and")) : t("story.noone");
   }
 
   function renderScene() {
     stopTimer();
-    const node = story.nodes[state.node];
-    if (node.ending) return renderEnding(node);
+    const id = state.node;
+    const node = story.nodes[id];
+    if (node.ending) return renderEnding(id, node);
 
     store.set(progressKey(), state);
     show("scene-view");
-    $("chapter").textContent = node.chapter;
-    renderParagraphs($("scene-text"), resolve(node.text));
+    $("chapter").textContent = chapterOf(id);
+    renderParagraphs($("scene-text"), textOf(id));
     renderStats();
 
     const box = $("choices");
@@ -119,10 +129,10 @@
     box.className = isChoice ? "choices two" : "choices";
     $("choice-prompt").hidden = !isChoice;
 
-    node.choices.forEach(function (choice) {
+    node.choices.forEach(function (choice, i) {
       const b = document.createElement("button");
       b.className = isChoice ? "choice" : "continue";
-      b.textContent = choice.label;
+      b.textContent = labelOf(id, i);
       b.addEventListener("click", function () {
         choose(choice);
       });
@@ -167,7 +177,7 @@
   }
 
   // ---------- endings ----------
-  function renderEnding(node) {
+  function renderEnding(id, node) {
     const found = foundEndings();
     const isNew = found.indexOf(node.ending) === -1;
     if (isNew) {
@@ -178,14 +188,19 @@
 
     const ending = story.endings.find((e) => e.id === node.ending);
     const number = story.endings.indexOf(ending) + 1;
+    const total = story.endings.length;
+    const shown = endingWords(ending);
 
     show("ending-view");
-    $("ending-chapter").textContent = node.chapter;
-    renderParagraphs($("ending-text"), resolve(node.text));
-    $("ending-kind").textContent = ending.kind + (isNew ? " · New ending found" : "");
-    $("ending-title").textContent = ending.title;
-    $("ending-count").textContent =
-      `${reader.name}, you have found ${found.length} of ${story.endings.length} endings.`;
+    $("ending-chapter").textContent = chapterOf(id);
+    renderParagraphs($("ending-text"), textOf(id));
+    $("ending-kind").textContent = shown.kind + (isNew ? " · " + t("ending.new") : "");
+    $("ending-title").textContent = shown.title;
+    $("ending-count").textContent = t("ending.count", {
+      name: reader.name,
+      found: found.length,
+      total: total,
+    });
 
     const grid = $("ending-grid");
     grid.innerHTML = "";
@@ -195,18 +210,24 @@
       card.className = "ending-card" + (unlocked ? " unlocked" : "") + (e.id === node.ending ? " current" : "");
       const n = document.createElement("span");
       n.className = "ending-number";
-      n.textContent = "Ending " + (i + 1);
-      const t = document.createElement("span");
-      t.className = "ending-name";
-      t.textContent = unlocked ? e.title : "Not found yet";
+      n.textContent = t("ending.number", { n: i + 1 });
+      const name = document.createElement("span");
+      name.className = "ending-name";
+      name.textContent = unlocked ? endingWords(e).title : t("ending.locked");
       card.appendChild(n);
-      card.appendChild(t);
+      card.appendChild(name);
       grid.appendChild(card);
     });
 
+    $("share").textContent = t("ending.share");
     $("share").onclick = function () {
-      const text = `I got “${ending.title}” (ending ${number} of ${story.endings.length}) in ${story.title} on Moniloria. Can you survive?`;
-      const done = () => ($("share").textContent = "Copied to clipboard");
+      const text = t("ending.shareText", {
+        ending: shown.title,
+        n: number,
+        total: total,
+        story: storyTitle(),
+      });
+      const done = () => ($("share").textContent = t("ending.copied"));
       if (navigator.share) {
         navigator.share({ text: text }).catch(function () {});
       } else if (navigator.clipboard) {
@@ -216,7 +237,6 @@
   }
 
   $("play-again").addEventListener("click", function () {
-    $("share").textContent = "Share your ending";
     newGame();
     renderScene();
   });
