@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How to Survive a Zombie Apocalypse | Moniloria Alternate Reality</title>
+    <meta name="description" content="An interactive story where every choice changes the ending." />
+    <meta name="theme-color" content="#121010" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body class="night">
+    <header class="reader-bar">
+      <a class="wordmark" href="index.html">Moniloria</a>
+      <span class="reader-bar-title">Alternate Reality</span>
+      <div class="reader-chip" id="reader-chip" hidden>
+        <span id="reader-name"></span>
+        <button class="link-button" id="sign-out" type="button">Sign out</button>
+      </div>
+    </header>
+
+    <main class="reader">
+      <!-- Sign in -->
+      <section id="gate-view" class="gate" hidden>
+        <p class="eyebrow">Alternate Reality</p>
+        <h1>How to Survive a Zombie Apocalypse</h1>
+        <p class="gate-lede">
+          This story is about you. Sign in and it will use your name, remember your choices, and
+          keep every ending you find.
+        </p>
+
+        <div id="google-block" hidden>
+          <div id="google-button"></div>
+        </div>
+
+        <form id="guest-form" class="guest-form" novalidate>
+          <label id="guest-label" for="guest-name">What should we call you?</label>
+          <div class="guest-row">
+            <input id="guest-name" type="text" autocomplete="given-name" maxlength="24" placeholder="Your first name" />
+            <button class="button light" type="submit">Begin</button>
+          </div>
+          <p class="form-error" id="guest-error" role="alert"></p>
+        </form>
+      </section>
+
+      <!-- Reading -->
+      <section id="scene-view" hidden>
+        <p class="eyebrow" id="chapter"></p>
+        <div class="scene-text" id="scene-text"></div>
+
+        <div class="timer" id="timer" hidden aria-hidden="true">
+          <div class="timer-fill" id="timer-fill"></div>
+        </div>
+        <p class="choice-prompt" id="choice-prompt">What do you do?</p>
+        <div class="choices" id="choices"></div>
+
+        <dl class="stats">
+          <div><dt>Supplies</dt><dd id="stat-supplies">0</dd></div>
+          <div><dt>Trust</dt><dd id="stat-trust">0</dd></div>
+          <div><dt>With you</dt><dd id="stat-with">No one</dd></div>
+        </dl>
+      </section>
+
+      <!-- Ending -->
+      <section id="ending-view" hidden>
+        <p class="eyebrow" id="ending-chapter"></p>
+        <div class="scene-text" id="ending-text"></div>
+
+        <div class="ending-banner">
+          <p class="eyebrow" id="ending-kind"></p>
+          <h2 id="ending-title"></h2>
+          <p id="ending-count"></p>
+        </div>
+
+        <ul class="ending-grid" id="ending-grid"></ul>
+
+        <div class="ending-actions">
+          <button class="button light" id="play-again" type="button">Play again</button>
+          <button class="button ghost" id="share" type="button">Share your ending</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/stories/zombie.js"></script>
+    <script src="js/engine.js"></script>
+  </body>
+</html>
