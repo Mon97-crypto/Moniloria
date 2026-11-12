@@ -34,8 +34,8 @@
           <p class="eyebrow">The library of secrets</p>
           <h1>Everything they <em>never</em> told you.</h1>
           <p class="hero-lede">
-            Beauty, strength, food, power, and the mysteries nobody could explain. Seven
-            collections, and stories that change with every choice you make.
+            Beauty, strength, food, power, and the mysteries nobody could explain. Six
+            collections of secrets, and stories that change with every choice you make.
           </p>
           <div class="hero-actions">
             <a class="button primary" href="story.html">Play a story free</a>
@@ -64,10 +64,19 @@
 
       <section class="collections" id="collections">
         <div class="section-head">
-          <p class="eyebrow">Seven collections</p>
+          <p class="eyebrow">Six collections</p>
           <h2>Pick your secret.</h2>
         </div>
-        <ul class="collection-grid" id="collection-grid"></ul>
+        <ul class="tile-grid" id="collection-tiles"></ul>
+      </section>
+
+      <section class="books" id="books">
+        <div class="section-head">
+          <p class="eyebrow">The library</p>
+          <h2>Every book, $20.</h2>
+        </div>
+        <div class="chips" id="book-filters" role="group" aria-label="Filter by collection"></div>
+        <ul class="book-grid" id="book-grid"></ul>
       </section>
 
       <section class="ar" id="alternate-reality">
@@ -138,6 +147,15 @@
         <p class="pricing-note">Checkout opens at launch.</p>
       </section>
     </main>
+
+    <dialog class="sample" id="sample" aria-labelledby="sample-title">
+      <p class="eyebrow" id="sample-collection"></p>
+      <h2 id="sample-title"></h2>
+      <p class="sample-label">From the first page</p>
+      <p class="sample-text" id="sample-text"></p>
+      <p class="sample-note">The full first chapter will be free to read at launch.</p>
+      <button class="button ghost" id="sample-close" type="button">Close</button>
+    </dialog>
 
     <footer class="footer">
       <div class="band" aria-hidden="true"></div>
