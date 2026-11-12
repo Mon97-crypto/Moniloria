@@ -8,24 +8,18 @@
       name="description"
       content="Moniloria is an ebook store of secrets: beauty, fitness, cooking, leadership, suspense, world mysteries, and interactive Alternate Reality stories."
     />
-    <meta name="theme-color" content="#f1f0ed" />
+    <meta name="theme-color" content="#08070c" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Newsreader:ital,wght@0,400;0,500;1,400&family=Syne:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <!-- Typewriter intro (shown once per visit) -->
-    <div class="intro" id="intro" hidden>
-      <p class="intro-line"><span id="intro-text"></span><span class="caret">|</span></p>
-      <button class="link-button" id="intro-skip" type="button">Skip introduction</button>
-    </div>
-
     <header class="nav">
-      <a class="wordmark" href="index.html">Moniloria</a>
+      <a class="wordmark" href="index.html"><span class="gem" aria-hidden="true"></span>Moniloria</a>
       <nav aria-label="Main">
         <a href="#collections">Collections</a>
         <a href="#alternate-reality">Alternate Reality</a>
@@ -36,49 +30,69 @@
 
     <main>
       <section class="hero">
-        <h1>Moniloria</h1>
-        <p class="hero-tagline">Everything they never told you.</p>
-        <div class="shelf" id="shelf" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <p class="eyebrow">The library of secrets</p>
+          <h1>Everything they <em>never</em> told you.</h1>
+          <p class="hero-lede">
+            Beauty, strength, food, power, and the mysteries nobody could explain. Seven
+            collections, and stories that change with every choice you make.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="story.html">Play a story free</a>
+            <a class="button ghost" href="#collections">Browse the collections</a>
+          </div>
+        </div>
+
+        <div class="stack" aria-hidden="true">
+          <span class="cover cover-back">
+            <span class="cover-kicker">World Secrets</span>
+            <span class="cover-title">The Bermuda Triangle Files</span>
+          </span>
+          <span class="cover cover-mid">
+            <span class="cover-kicker">Suspense</span>
+            <span class="cover-title">Don’t Answer the Door</span>
+          </span>
+          <span class="cover cover-front">
+            <span class="cover-kicker">Alternate Reality</span>
+            <span class="cover-title">How to Survive a Zombie Apocalypse</span>
+            <span class="cover-foot">6 endings</span>
+          </span>
+        </div>
       </section>
 
-      <section class="manifesto">
-        <p>
-          The best skin of your life. A stronger body in twenty minutes. Dinner like a restaurant.
-          The room listening when you speak.
-        </p>
-        <p>
-          And the things nobody could ever explain: the planes that vanished, the cities that sank,
-          the doors that should have stayed shut.
-        </p>
-        <p>Six collections of secrets. One library. Open any cover.</p>
-      </section>
+      <div class="band" aria-hidden="true"></div>
 
       <section class="collections" id="collections">
-        <h2>The collections</h2>
-        <ul class="collection-list" id="collection-list"></ul>
+        <div class="section-head">
+          <p class="eyebrow">Seven collections</p>
+          <h2>Pick your secret.</h2>
+        </div>
+        <ul class="collection-grid" id="collection-grid"></ul>
       </section>
 
       <section class="ar" id="alternate-reality">
-        <div class="ar-copy">
-          <p class="eyebrow">New · Interactive</p>
-          <h2>Alternate Reality</h2>
-          <p class="ar-lede">
-            Stories that are about you. They use your name. At every turn you choose what happens
-            next, and the ending you reach is the one you earned.
-          </p>
-          <ul class="ar-points">
-            <li>Two choices at every cliffhanger</li>
-            <li>Six endings to find, one of them secret</li>
-            <li>Some decisions are on a clock</li>
-          </ul>
-          <a class="button light" href="story.html">Begin Chapter One, free</a>
-        </div>
+        <div class="ar-panel">
+          <div class="ar-copy">
+            <p class="eyebrow">New · Interactive</p>
+            <h2>Alternate Reality</h2>
+            <p class="ar-lede">
+              Stories that are about you. They use your name. At every turn you choose what
+              happens next, and the ending you reach is the one you earned.
+            </p>
+            <ul class="ar-points">
+              <li><strong>2</strong> choices at every cliffhanger</li>
+              <li><strong>6</strong> endings to find, one of them secret</li>
+              <li><strong>12</strong> seconds to decide when it matters most</li>
+            </ul>
+            <a class="button primary" href="story.html">Begin Chapter One, free</a>
+          </div>
 
-        <a class="cover" href="story.html" aria-label="Read How to Survive a Zombie Apocalypse">
-          <span class="cover-kicker">Alternate Reality · No. 1</span>
-          <span class="cover-title">How to Survive a Zombie Apocalypse</span>
-          <span class="cover-foot">6 endings</span>
-        </a>
+          <a class="cover cover-feature" href="story.html" aria-label="Read How to Survive a Zombie Apocalypse">
+            <span class="cover-kicker">Alternate Reality · No. 1</span>
+            <span class="cover-title">How to Survive a Zombie Apocalypse</span>
+            <span class="cover-foot">6 endings</span>
+          </a>
+        </div>
 
         <ol class="ar-upcoming">
           <li><span>Coming soon</span>The Bermuda Signal</li>
@@ -89,7 +103,10 @@
       </section>
 
       <section class="pricing" id="pricing">
-        <h2>Simple pricing</h2>
+        <div class="section-head">
+          <p class="eyebrow">Pricing</p>
+          <h2>The more you unlock, the less each costs.</h2>
+        </div>
         <ul class="plans">
           <li class="plan">
             <h3>Single ebook</h3>
@@ -123,11 +140,12 @@
     </main>
 
     <footer class="footer">
-      <div class="footer-plate">
+      <div class="band" aria-hidden="true"></div>
+      <div class="footer-inner">
+        <a class="wordmark" href="index.html"><span class="gem" aria-hidden="true"></span>Moniloria</a>
         <p>Everything they never told you.</p>
-        <span class="footer-word">Moniloria</span>
+        <p class="footer-legal">© 2026 Moniloria. All rights reserved.</p>
       </div>
-      <p class="footer-legal">© 2026 Moniloria. All rights reserved.</p>
     </footer>
 
     <script src="js/home.js"></script>

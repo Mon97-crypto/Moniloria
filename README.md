@@ -17,7 +17,7 @@ Then open http://localhost:8000
 
 | File | What it is |
 |---|---|
-| `index.html` | Landing page: intro, shelf of books, collections, pricing |
+| `index.html` | Landing page: hero, collections, Alternate Reality, pricing |
 | `story.html` | The interactive story reader |
 | `js/stories/zombie.js` | "How to Survive a Zombie Apocalypse": 6 endings, one secret |
 | `js/engine.js` | Runs any story file: choices, timer, saved progress, endings |
