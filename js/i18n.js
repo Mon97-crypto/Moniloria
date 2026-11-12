@@ -155,13 +155,16 @@
       if (title) document.title = title;
     }
 
-    // The switch always shows the language you can change to.
-    document.querySelectorAll(".lang-toggle").forEach(function (button) {
-      button.textContent = lang === "kn" ? "English" : "ಕನ್ನಡ";
-      button.setAttribute("lang", lang === "kn" ? "en" : "kn");
+    // The switch shows both languages; the current one is highlighted.
+    document.querySelectorAll(".lang-switch button").forEach(function (button) {
+      const target = button.dataset.lang;
+      const current = target === lang;
+      button.classList.toggle("on", current);
+      button.setAttribute("aria-pressed", String(current));
       button.addEventListener("click", function () {
+        if (current) return;
         try {
-          localStorage.setItem(KEY, lang === "kn" ? "en" : "kn");
+          localStorage.setItem(KEY, target);
         } catch (e) {}
         location.reload();
       });
